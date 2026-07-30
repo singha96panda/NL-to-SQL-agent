@@ -109,10 +109,14 @@ def call_claude_with_retry(messages, max_retries: int = 4):
                 raise  # give up and let the error surface after max_retries
 
 
-def ask_agent(user_question: str, verbose: bool = True) -> str:
+def ask_agent(user_question: str, verbose: bool = True, trace: list = None) -> str:
     """
     Runs the full agent loop for a single user question.
     Returns the final natural-language answer.
+
+    If a `trace` list is passed in, each tool call/result is appended to it
+    as a dict -- this lets a UI (like our Streamlit app) show what the agent
+    did step by step, instead of only the final answer.
     """
     messages = [{"role": "user", "content": user_question}]
 
@@ -136,6 +140,13 @@ def ask_agent(user_question: str, verbose: bool = True) -> str:
 
                     if verbose:
                         print(f"   → result: {json.dumps(result)[:300]}")
+
+                    if trace is not None:
+                        trace.append({
+                            "tool_name": block.name,
+                            "tool_input": block.input,
+                            "tool_result": result,
+                        })
 
                     tool_results.append({
                         "type": "tool_result",
