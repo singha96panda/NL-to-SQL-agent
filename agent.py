@@ -5,11 +5,6 @@ The agentic loop: connects Claude to our two tools (get_schema, run_sql)
 and lets it reason step-by-step to answer natural language questions
 about the database.
 
-Before running: set your API key as an environment variable:
-    export ANTHROPIC_API_KEY="your-key-here"
-
-Then run:
-    python3 agent.py
 """
 
 import os
