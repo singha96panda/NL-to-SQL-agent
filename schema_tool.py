@@ -6,6 +6,7 @@ before writing any SQL. Run this file directly to test it standalone.
 """
 
 import sqlite3
+import os
 
 DB_PATH = DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "shop.db")
 
