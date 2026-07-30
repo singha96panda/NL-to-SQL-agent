@@ -6,8 +6,7 @@ Safety guardrails are baked in:
   1. Only SELECT statements are allowed (string-level check)
   2. The connection itself is opened read-only (OS-level enforcement)
   3. Results are capped at MAX_ROWS
-
-Run this file directly to test it standalone.
+  
 """
 
 import sqlite3
