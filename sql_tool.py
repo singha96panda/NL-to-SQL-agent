@@ -11,8 +11,9 @@ Run this file directly to test it standalone.
 """
 
 import sqlite3
+import os
 
-DB_PATH = r"C:\Users\souryadeep\Desktop\Text to SQL\shop.db"
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "shop.db")
 MAX_ROWS = 50
 
 # Keywords that should never appear in a query we execute
